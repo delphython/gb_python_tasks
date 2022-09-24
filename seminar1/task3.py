@@ -3,16 +3,6 @@
 '''
 
 
-def get_input_values():
-    print("Введите первое число")
-    first_number = input()
-    
-    print("Введите второе число")
-    second_number = input()
-
-    return first_number, second_number
-
-
 def main():
     print("Введите число N")
     target_number = input()
