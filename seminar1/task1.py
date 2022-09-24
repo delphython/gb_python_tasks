@@ -20,7 +20,9 @@ def main():
     if all(input_value.isdigit() for input_value in input_values):
         first_number, second_number = input_values
 
-        tmp_str = "является" if (int(second_number)**2 == int(first_number)) else "не является"
+        tmp_str = (
+            "является" if (int(second_number)**2 == int(first_number)) else "не является"
+        )
         output_str = (f"Число {first_number} {tmp_str} квадратом числа {second_number}")
 
     print(output_str)
