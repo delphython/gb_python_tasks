@@ -11,10 +11,10 @@ def main():
         int_target_number = int(target_number)
         print(
             (
-                (int_target_number % 5 == 0) &
-                (int_target_number % 10 == 0) |
+                (int_target_number % 5 == 0) and
+                (int_target_number % 10 == 0) or
                 (int_target_number % 15 == 0)
-            ) & int_target_number % 30 != 0
+            ) and int_target_number % 30 != 0
         )
     else:
         print("Введено неверное число")

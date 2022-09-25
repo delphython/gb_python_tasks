@@ -18,7 +18,7 @@ def main():
     print("Введите число обозначающее день недели")
     target_number = input()
 
-    if target_number.isdigit() & (int(target_number) in day_of_week):
+    if target_number.isdigit() and (int(target_number) in day_of_week):
         int_target_number = int(target_number)
         print(day_of_week[int_target_number])
         print("выходной" if int_target_number in {6, 7} else "не выходной")
