@@ -1,5 +1,5 @@
 '''
-Задание 8. Сообщить в какой четверти координатной плоскости 
+Задание 8. Сообщить в какой четверти координатной плоскости
 или на какой оси находится точка с координатами Х и У.
 '''
 
@@ -7,7 +7,7 @@
 def get_input_values():
     print("Введите координату X")
     coord_x = input()
-    
+
     print("Введите координату Y")
     coord_y = input()
 
@@ -33,25 +33,34 @@ def main():
 
         if (int_coord_x != 0 and int_coord_y != 0):
             tmp_str = (
-                "в первой четверти" if (int_coord_x > 0 and int_coord_y > 0) 
+                "в первой четверти" if (
+                    int_coord_x > 0 and int_coord_y > 0
+                    )
                 else (
-                    "во второй четверти" if (int_coord_x < 0 and int_coord_y > 0) 
+                    "во второй четверти" if (
+                        int_coord_x < 0 and int_coord_y > 0
+                    )
                     else (
-                        "в третьей четверти" if (int_coord_x < 0 and int_coord_y < 0)
+                        "в третьей четверти" if (
+                            int_coord_x < 0 and int_coord_y < 0
+                        )
                         else "в четвертой четверти"
-                    ) 
+                    )
                 )
             )
         else:
             tmp_str = (
-                "на оси Y" if (int_coord_x == 0 and int_coord_y != 0)  
+                "на оси Y" if (int_coord_x == 0 and int_coord_y != 0)
                 else (
-                    "на оси X" if (int_coord_x != 0 and int_coord_y == 0) 
+                    "на оси X" if (int_coord_x != 0 and int_coord_y == 0)
                     else "в нулевой точке"
-                    ) 
+                    )
             )
 
-        output_str = (f"Коордиината ({coord_x}, {coord_y}) находится {tmp_str}")
+        output_str = (
+            f"Коордиината ({coord_x}, {coord_y}) находится {tmp_str}"
+        )
+
     print(output_str)
 
 

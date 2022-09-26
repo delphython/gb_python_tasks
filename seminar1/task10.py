@@ -6,7 +6,7 @@
 def get_input_values():
     print("Введите координату X первой точки")
     first_coord_x = input()
-    
+
     print("Введите координату Y первой точки")
     first_coord_y = input()
 
@@ -28,7 +28,12 @@ def is_int(value):
 
 
 def get_distance_between_points(points_coords):
-    first_coord_x, first_coord_y, second_coord_x, second_coord_y = points_coords
+    (
+        first_coord_x,
+        first_coord_y,
+        second_coord_x,
+        second_coord_y
+    ) = points_coords
 
     return round(
         (
@@ -46,7 +51,10 @@ def main():
 
     if all(is_int(input_value) for input_value in input_values):
         output_str = (
-            f"Расстояние между двумя точками = {get_distance_between_points(input_values)}"
+            f"""
+            Расстояние между двумя точками = {
+                get_distance_between_points(input_values)
+            }"""
         )
 
     print(output_str)

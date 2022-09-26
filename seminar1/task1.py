@@ -1,12 +1,13 @@
 '''
-Задание 1. По двум заданным числам проверить является ли одно квадратом второго.
+Задание 1. По двум заданным числам проверить является
+ли одно квадратом второго.
 '''
 
 
 def get_input_values():
     print("Введите первое число")
     first_number = input()
-    
+
     print("Введите второе число")
     second_number = input()
 
@@ -21,9 +22,13 @@ def main():
         first_number, second_number = input_values
 
         tmp_str = (
-            "является" if (int(second_number)**2 == int(first_number)) else "не является"
+            "является" if (
+                int(second_number)**2 == int(first_number)
+            ) else "не является"
         )
-        output_str = (f"Число {first_number} {tmp_str} квадратом числа {second_number}")
+        output_str = (
+            f"Число {first_number} {tmp_str} квадратом числа {second_number}"
+        )
 
     print(output_str)
 

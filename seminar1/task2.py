@@ -18,7 +18,9 @@ def main():
 
     if all(input_value.isdigit() for input_value in input_values):
         output_str = (
-            f"Маскимальным из введенных чисел является число {max(input_values)}"
+            f"""
+            Максимальным из введенных чисел является число {max(input_values)}
+            """
         )
 
     print(output_str)

@@ -16,7 +16,10 @@ def main():
 
     if target_number.isdigit() and target_number in {"1", "2", "3", "4"}:
         print(
-            f"Допустимые значения координат для точек {target_number} четверти: {coord_quarters[target_number]}"
+            f"""
+            Допустимые значения координат для точек {target_number} четверти:
+            {coord_quarters[target_number]}
+            """
         )
     else:
         print("Введено неверное число")
