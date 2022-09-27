@@ -6,7 +6,7 @@
 
 def main():
     output_list = []
-    print("Введите число натуральное число n")
+    print("Введите натуральное число n")
     target_number = input()
 
     if target_number.isdigit():
