@@ -12,8 +12,9 @@ def main():
     if target_number.isdigit():
         int_target_number = int(target_number)
         for n in range(1, int_target_number+1):
-            multiply = 1 if n == 1 else n * output_list[n-2] 
-            output_list.append(multiply)
+            output_list.append(
+                1 if n == 1 else n * output_list[n-2]
+            )
         print(output_list)
     else:
         print("Введено неверное число")
