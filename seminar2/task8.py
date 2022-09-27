@@ -25,12 +25,15 @@ def main():
         
     # hard way
     print(
-        f"Перемешанный спиcок сложным способом: {mix_list(initial_list)}"
+        f"""Перемешанный спиcок сложным способом:
+        {mix_list(initial_list)}"""
     )
 
     # easy way
     random.shuffle(initial_list)
-    print(f"Перемешанный спиcок простым способом: {initial_list}")
+    print(
+        f"Перемешанный спиcок простым способом: {initial_list}"
+    )
 
 if __name__ == "__main__":
     main()

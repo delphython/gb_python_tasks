@@ -20,7 +20,9 @@ def main():
         )
     ]
     
-    needed_list = [x for index, x in enumerate(target_list) if index in positions]
+    needed_list = [
+        x for index, x in enumerate(target_list) if index in positions
+    ]
     
     print(f"Произведение элементов = {math.prod(needed_list)}")
 
