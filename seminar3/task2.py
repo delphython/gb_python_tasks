@@ -4,9 +4,6 @@
 '''
 
 
-import math
-
-
 def main():
     input_list = ["ksd", "lasland", 2.3]
 
