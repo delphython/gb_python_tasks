@@ -17,11 +17,14 @@ def get_input_values():
 
 
 def get_random_int(first_number, second_number):
-    random_for_gen = int(datetime.datetime.now().microsecond)
+    random_for_gen = int(
+        datetime.datetime.now().microsecond
+    )
     
     generated = 0
     while(True): 
-        if generated >= first_number and generated <= second_number:
+        if (generated >= first_number and 
+        generated <= second_number):
             break
                 
         random_for_gen /= 9
@@ -34,11 +37,14 @@ def main():
     output_str = "Введены неверные значения чисел"
     input_values = get_input_values()
 
-    if all(input_value.isdigit() for input_value in input_values):
+    if all(
+        input_value.isdigit() for input_value in input_values
+        ):
         first_number, second_number = input_values
 
         output_str = (
-            f"Сгенерированное число: {get_random_int(int(first_number), int(second_number))}"
+            f"""Сгенерированное число: 
+            {get_random_int(int(first_number), int(second_number))}"""
         )
 
     print(output_str)

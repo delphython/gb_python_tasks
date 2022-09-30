@@ -27,7 +27,9 @@ def main():
 
     if target_number.isdigit():
         fib_list = [get_fibonacci(i) for i in range(1, int(target_number)+1)]
-        negafib_list = [get_negafibonacci(i) for i in range(-1, -int(target_number)-1, -1)]
+        negafib_list = [
+            get_negafibonacci(i) for i in range(-1, -int(target_number)-1, -1)
+        ]
 
         print(negafib_list[::-1] + [0] + fib_list)
     else:
