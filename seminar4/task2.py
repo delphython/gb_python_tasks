@@ -76,13 +76,13 @@ def main():
         if equation_solutions_def:
             output_str = (
                 f"""Решения уравнения с помощью математических формул: 
-                {", ".join(equation_solutions_def)}"""
+                {", ".join(equation_solutions_def)}\n"""
             )
         else:
             output_str = "Уравнение не имеет решений"
         
         if equation_solutions_sympy:
-            output_str = (
+            output_str += (
                 f"""Решения уравнения с помощью доп. библиотек: 
                 {", ".join(list(map(str, equation_solutions_sympy)))}"""
             )
