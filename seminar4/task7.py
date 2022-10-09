@@ -9,15 +9,13 @@ import random
 
 
 def main():
-    tmp_list = []
-    file_name = "file1.txt"
-
     print("Введите степень многочлена")
     target_number = input()
 
     if target_number.isdigit():
         int_target_number = int(target_number)
-        
+
+        tmp_list = []
         for i in range(int_target_number, -1, -1):
             koeff_rand = random.randint(0, 100)
             if koeff_rand != 0:
@@ -27,7 +25,9 @@ def main():
                     )
                 )
                 tmp_list.append(polynomial_member)
-        
+
+        file_name = "file1.txt"
+
         with open(file_name, "w") as file:
             file.write(f"{' + '.join(tmp_list)} = 0") 
 
