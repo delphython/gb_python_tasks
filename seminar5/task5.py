@@ -31,7 +31,9 @@ def is_winner(cells, xo_item):
         (2, 4, 6)
     )
 
-    xo_item_idx = [i for i, x in enumerate(cells) if x == xo_item]
+    xo_item_idx = [
+        i for i, x in enumerate(cells) if x == xo_item
+    ]
 
     return any(
         set(winning_combination).issubset(xo_item_idx) 
@@ -43,7 +45,10 @@ def make_move(cells, xo_item):
     print(f"Игрок {xo_item}, выберите номер ячейки")
     target_cell = input()
 
-    while not target_cell.isdigit() or int(target_cell) not in list(range(1, 10)):
+    while (
+        not target_cell.isdigit() or
+        int(target_cell) not in list(range(1, 10))
+    ):
         print("Введен некорректный номер ячейки")
         target_cell = input()
 
@@ -51,18 +56,17 @@ def make_move(cells, xo_item):
         print("Ячейка уже занята, введите другую")
         target_cell = input()
     
-    changed_cells = list(cells)
-    changed_cells[int(target_cell)-1] = xo_item
+    cells[int(target_cell)-1] = xo_item
     
-    return changed_cells
+    return cells
 
 
 def main():
-    cells = (
+    cells = [
         1, 2, 3,
         4, 5, 6,
         7, 8, 9
-    )
+    ]
 
     xo_items = ("X", "0")
 
