@@ -1,22 +1,22 @@
-'''
+"""
 Задание 1. Напишите программу вычисления арифметического
 выражения заданного строкой. Используйте операции +,-,/,*
 приоритет операций стандартный.
-'''
+"""
 
 
 def calculate(expression):
     operator_function = {
-        '-': lambda x, y: x - y,
-        '+': lambda x, y: x + y,
-        '*': lambda x, y: x * y,
-        '/': lambda x, y: x / y,
+        "-": lambda x, y: x - y,
+        "+": lambda x, y: x + y,
+        "*": lambda x, y: x * y,
+        "/": lambda x, y: x / y,
     }
 
     numbers = list()
     operators = list()
 
-    elements = list('(' + expression + ')')
+    elements = list("(" + expression + ")")
     
     while elements:
         element = elements.pop(0)
@@ -24,9 +24,9 @@ def calculate(expression):
         if element.isdecimal():
             numbers.append(float(element))
         else:
-            if element == ')':
+            if element == ")":
                 operator = operators.pop()
-                while operators and operator != '(':
+                while operators and operator != "(":
                     x, y = numbers.pop(), numbers.pop()
                     f = operator_function[operator]
                     numbers.append(f(x, y))
