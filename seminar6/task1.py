@@ -13,27 +13,26 @@ def calculate(expression):
         "/": lambda x, y: x / y,
     }
 
-    numbers = list()
-    operators = list()
+    numbers = []
+    operators = []
 
-    elements = list("(" + expression + ")")
-    
+    elements = list(f"({expression})")
+
     while elements:
         element = elements.pop(0)
 
         if element.isdecimal():
             numbers.append(float(element))
-        else:
-            if element == ")":
-                operator = operators.pop()
-                while operators and operator != "(":
-                    x, y = numbers.pop(), numbers.pop()
-                    f = operator_function[operator]
-                    numbers.append(f(x, y))
+        elif element == ")":
+            operator = operators.pop()
+            while operators and operator != "(":
+                x, y = numbers.pop(), numbers.pop()
+                f = operator_function[operator]
+                numbers.append(f(x, y))
 
-                    operator = operators.pop()
-            else:
-                operators.append(element)
+                operator = operators.pop()
+        else:
+            operators.append(element)
 
     return numbers[0]
 
