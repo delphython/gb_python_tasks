@@ -10,8 +10,8 @@ from fractions import Fraction
 
 def isComplex(value):
     return (
-        isinstance(value, complex) 
-        # and (complex(value).imag != 0)
+        isinstance(complex(value), complex) 
+        and (complex(value).imag != 0)
     )
 
 
@@ -62,8 +62,6 @@ def main():
 
     print("Введите действие (+, -, *, /)")
     operator = input()
-
-    print(isComplex(first_number), isComplex(second_number))
 
     if isComplex(first_number) and isComplex(second_number):
         print(
