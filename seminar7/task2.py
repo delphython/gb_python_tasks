@@ -10,10 +10,10 @@ import sys
 
 
 def show_phonebook():
-    phonebook_file_path = 'phonebook.csv'
+    phonebook_file_path = "phonebook.csv"
 
     with open(phonebook_file_path, encoding = "UTF8") as csvfile:
-        phonebook_items = csv.reader(csvfile, delimiter=';')
+        phonebook_items = csv.reader(csvfile, delimiter=";")
 
         for phonebook_item in phonebook_items:
             print("\t".join(phonebook_item))
@@ -22,14 +22,14 @@ def show_phonebook():
 
 
 def import_from_cvs():
-    phonebook_file_path = 'phonebook.csv'
-    phonebook_csv_file = 'import_phonebook.csv'
+    phonebook_file_path = "phonebook.csv"
+    phonebook_csv_file = "import_phonebook.csv"
     
-    with open(phonebook_csv_file, "r", encoding='utf-8') as csvfile: 
-        phonebook_items = csv.reader(csvfile, delimiter=';')
+    with open(phonebook_csv_file, "r", encoding="utf-8") as csvfile: 
+        phonebook_items = csv.reader(csvfile, delimiter=";")
 
-        with open(phonebook_file_path, 'a', encoding='utf-8', newline='') as csvfile: 
-            csv_writer = csv.writer(csvfile, delimiter=';', lineterminator=os.linesep)
+        with open(phonebook_file_path, "a", encoding="utf-8", newline="") as csvfile: 
+            csv_writer = csv.writer(csvfile, delimiter=";", lineterminator=os.linesep)
         
             for phonebook_item in phonebook_items:
                 csv_writer.writerow(phonebook_item)
@@ -38,14 +38,14 @@ def import_from_cvs():
 
 
 def import_from_json():
-    phonebook_file_path = 'phonebook.csv'
-    phonebook_json_file = 'import_phonebook.json'
+    phonebook_file_path = "phonebook.csv"
+    phonebook_json_file = "import_phonebook.json"
     
-    with open(phonebook_json_file, "r", encoding='utf-8') as jsonfile: 
+    with open(phonebook_json_file, "r", encoding="utf-8") as jsonfile: 
         phonebook_items = json.load(jsonfile)
 
-    with open(phonebook_file_path, 'a', encoding='utf-8', newline='') as csvfile: 
-        csv_writer = csv.writer(csvfile, delimiter=';', lineterminator=os.linesep)
+    with open(phonebook_file_path, "a", encoding="utf-8", newline="") as csvfile: 
+        csv_writer = csv.writer(csvfile, delimiter=";", lineterminator=os.linesep)
     
         for phonebook_item in phonebook_items:
             csv_writer.writerow(phonebook_item.values())
@@ -54,14 +54,14 @@ def import_from_json():
 
 
 def export_to_cvs():
-    phonebook_file_path = 'phonebook.csv'
-    phonebook_csv_file = 'export_phonebook.csv'
+    phonebook_file_path = "phonebook.csv"
+    phonebook_csv_file = "export_phonebook.csv"
 
-    with open(phonebook_file_path, encoding='utf-8') as csvfile: 
-        phonebook_items = csv.reader(csvfile, delimiter=';')
+    with open(phonebook_file_path, encoding="utf-8") as csvfile: 
+        phonebook_items = csv.reader(csvfile, delimiter=";")
 
-        with open(phonebook_csv_file, 'w', encoding='utf-8', newline='') as csvfile: 
-            csv_writer = csv.writer(csvfile, delimiter=';', lineterminator=os.linesep)
+        with open(phonebook_csv_file, "w", encoding="utf-8", newline="") as csvfile: 
+            csv_writer = csv.writer(csvfile, delimiter=";", lineterminator=os.linesep)
 
             for phonebook_item in phonebook_items:
                 csv_writer.writerow(phonebook_item)
@@ -70,17 +70,17 @@ def export_to_cvs():
 
 
 def export_to_json():
-    phonebook_file_path = 'phonebook.csv'
-    phonebook_json_file = 'export_phonebook.json'
+    phonebook_file_path = "phonebook.csv"
+    phonebook_json_file = "export_phonebook.json"
     phonebook_json_items = []
 
-    with open(phonebook_file_path, encoding='utf-8') as csvfile: 
-        phonebook_items = csv.DictReader(csvfile, delimiter=';')
+    with open(phonebook_file_path, encoding="utf-8") as csvfile: 
+        phonebook_items = csv.DictReader(csvfile, delimiter=";")
 
         for phonebook_item in phonebook_items: 
             phonebook_json_items.append(phonebook_item)
     
-    with open(phonebook_json_file, 'w', encoding='utf-8') as jsonfile: 
+    with open(phonebook_json_file, "w", encoding="utf-8") as jsonfile: 
         jsonfile.write(json.dumps(phonebook_json_items, indent=4))
     
     print(f"Все записи экспортированы в json файл {phonebook_json_file}\n")
