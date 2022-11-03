@@ -135,15 +135,42 @@ def main():
     )
 
     operations = {
-        "1": ("Показать все записи в базе", get_items_from_bd, [cursor]),
-        "2": ("Показать все записи таблицы students", get_items_from_table, [cursor, "students"]), 
-        "3": ("Показать все записи таблицы grades", get_items_from_table, [cursor, "grades"]),
-        "4": ("Добавить запись в таблицу students", add_item_to_table, [cursor, "students"]), 
-        "5": ("Добавить запись в таблицу grades", add_item_to_table, [cursor, "grades"]),
-        "6": ("Изменить запись в таблице students", update_item_in_table, [cursor, "students"]), 
-        "7": ("Изменить запись в таблице grades", update_item_in_table, [cursor, "grades"]),
-        "8": ("Удалить запись из таблицы students", delete_item_from_table, [cursor, "students"]),
-        "9": ("Удалить запись из таблицы grades", delete_item_from_table, [cursor, "grades"]),
+        "1": (
+            "Показать все записи в базе",
+            get_items_from_bd,
+            [cursor]),
+        "2": (
+            "Показать все записи таблицы students",
+            get_items_from_table,
+            [cursor, "students"]), 
+        "3": (
+            "Показать все записи таблицы grades",
+            get_items_from_table,
+            [cursor, "grades"]),
+        "4": (
+            "Добавить запись в таблицу students",
+            add_item_to_table,
+            [cursor, "students"]), 
+        "5": (
+            "Добавить запись в таблицу grades",
+            add_item_to_table,
+            [cursor, "grades"]),
+        "6": (
+            "Изменить запись в таблице students",
+            update_item_in_table,
+            [cursor, "students"]), 
+        "7": (
+            "Изменить запись в таблице grades",
+            update_item_in_table,
+            [cursor, "grades"]),
+        "8": (
+            "Удалить запись из таблицы students",
+            delete_item_from_table,
+            [cursor, "students"]),
+        "9": (
+            "Удалить запись из таблицы grades",
+            delete_item_from_table,
+            [cursor, "grades"]),
         "10": ("Выход", exit_from_script, []),
     }
 
@@ -153,8 +180,7 @@ def main():
             print(f"{number} - {operation[0]}")
         print("Выберите номер операции:")
         selected_operation = input()
-        selected_operation_value = operations.get(selected_operation)
-        if selected_operation_value:
+        if selected_operation_value := operations.get(selected_operation):
             selected_operation_value[1](selected_operation_value[2])
         else:
             print("Выбрана неверная операция")
