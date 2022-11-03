@@ -1,4 +1,5 @@
 import sqlite3
+import sys
 
 import pandas as pd
 
@@ -60,8 +61,8 @@ def insert_test_data(
     )
 
 
-def get_items_from_bd(cursor):
-    rows = cursor.execute(
+def get_items_from_bd(*args):
+    rows = args[0][0].execute(
         """
         SELECT 
         students.first_name,
@@ -76,7 +77,7 @@ def get_items_from_bd(cursor):
         """
     ).fetchall()
 
-    return pd.DataFrame(
+    print(pd.DataFrame(
         rows,
         columns = [
             'Имя',
@@ -88,6 +89,11 @@ def get_items_from_bd(cursor):
             "Дата"
         ]
         )
+    )
+
+
+def exit_from_script(*args):
+    sys.exit()
 
 
 def main():
@@ -102,9 +108,8 @@ def main():
     ]
 
     conn = sqlite3.connect("test.db")
-
     cursor = conn.cursor()
-    
+
     create_tables(cursor)
 
     insert_test_data(
@@ -113,7 +118,27 @@ def main():
         grades_test_items
     )
 
-    print(get_items_from_bd(cursor))
+    operations = {
+        "1": ("Показать все записи в базе", get_items_from_bd, [cursor]),
+        # "2": ("Импорт данных из файла (cvs) в справочник", import_from_cvs), 
+        # "3": ("Импорт данных из файла (json) в справочник", import_from_json), 
+        # "4": ("Экспорт данных из справочника в файл (cvs)", export_to_cvs),
+        # "5": ("Экспорт данных из справочника в файл (json)", export_to_json),
+        "6": ("Выход", exit_from_script, []),
+    }
+
+    print("База данных для студентов")
+    while True:
+        for number, operation in operations.items():
+            print(f"{number} - {operation[0]}")
+        print("Выберите номер операции:")
+        selected_operation = input()
+        selected_operation_value = operations.get(selected_operation)
+        if selected_operation_value:
+            selected_operation_value[1](selected_operation_value[2])
+        else:
+            print("Выбрана неверная операция")
+
 
 if __name__ == "__main__":
     main()
