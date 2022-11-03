@@ -92,6 +92,22 @@ def get_items_from_bd(*args):
     )
 
 
+def get_items_from_table(*args):
+    pass
+
+
+def add_item_to_table(*args):
+    pass
+
+
+def update_item_in_table(*args):
+    pass
+
+
+def delete_item_from_table(*args):
+    pass
+
+
 def exit_from_script(*args):
     sys.exit()
 
@@ -120,11 +136,15 @@ def main():
 
     operations = {
         "1": ("Показать все записи в базе", get_items_from_bd, [cursor]),
-        # "2": ("Импорт данных из файла (cvs) в справочник", import_from_cvs), 
-        # "3": ("Импорт данных из файла (json) в справочник", import_from_json), 
-        # "4": ("Экспорт данных из справочника в файл (cvs)", export_to_cvs),
-        # "5": ("Экспорт данных из справочника в файл (json)", export_to_json),
-        "6": ("Выход", exit_from_script, []),
+        "2": ("Показать все записи таблицы students", get_items_from_table, [cursor, "students"]), 
+        "3": ("Показать все записи таблицы grades", get_items_from_table, [cursor, "grades"]),
+        "4": ("Добавить запись в таблицу students", add_item_to_table, [cursor, "students"]), 
+        "5": ("Добавить запись в таблицу grades", add_item_to_table, [cursor, "grades"]),
+        "6": ("Изменить запись в таблице students", update_item_in_table, [cursor, "students"]), 
+        "7": ("Изменить запись в таблице grades", update_item_in_table, [cursor, "grades"]),
+        "8": ("Удалить запись из таблицы students", delete_item_from_table, [cursor, "students"]),
+        "9": ("Удалить запись из таблицы grades", delete_item_from_table, [cursor, "grades"]),
+        "10": ("Выход", exit_from_script, []),
     }
 
     print("База данных для студентов")
