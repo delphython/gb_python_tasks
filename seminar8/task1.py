@@ -202,13 +202,65 @@ def insert_item_to_table(*args):
 
 
 def update_item_in_table(*args):
-    pass
+    cursor, table_name = args[0]
+    id_to_update = input(
+        f"Введите id таблицы {table_name} для изменения:"
+    )
+    if table_name == "students":
+        students_data = []
+        students_fields = [
+            "Имя",
+            "Фамилия",
+            "№ курса",
+            "№ группы"
+        ]
+        print(f"Введите данные полей таблицы {table_name}:")        
+        for students_field in students_fields:
+            students_data.append(
+                input(f"Данные поля {students_field}:")
+            )
+        students_data.append(id_to_update)
+        cursor.execute(
+        """
+        update students set 
+            first_name = ?,
+            last_name = ?,
+            training_course = ?,
+            group_number = ?
+        where student_id = ?
+        """,
+        (students_data)
+    )
+    elif table_name == "grades":
+        grades_data = []
+        grades_fields = [
+            "student id",
+            "Предмет",
+            "Оценка",
+            "Дата"
+        ]
+        print(f"Введите данные полей таблицы {table_name}:")        
+        for grades_field in grades_fields:
+            grades_data.append(
+                input(f"Данные поля {grades_field}:")
+            )
+        grades_data.append(id_to_update)
+        cursor.execute(
+            """
+            update grades set
+                student_id = ?,
+                subject = ?,
+                grade = ?,
+                grade_date = ?
+            where grade_id = ?
+            """,
+            (grades_data)
+        )
 
 
 def delete_item_from_table(*args):
     cursor, table_name = args[0]
-    print(f"Введите id таблицы {table_name} для удаления:")
-    id_to_delete = input()
+    id_to_delete = input(f"Введите id таблицы {table_name} для удаления:")
     if table_name == "students":
         cursor.execute(
             """
