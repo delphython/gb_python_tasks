@@ -80,10 +80,10 @@ def get_items_from_bd(*args):
     print(pd.DataFrame(
         rows,
         columns = [
-            'Имя',
-            'Фамилия',
-            '№ курса',
-            '№ группы',
+            "Имя",
+            "Фамилия",
+            "№ курса",
+            "№ группы",
             "Предмет",
             "Оценка",
             "Дата"
@@ -93,7 +93,58 @@ def get_items_from_bd(*args):
 
 
 def get_items_from_table(*args):
-    pass
+    if args[0][1] == "students":
+        rows = args[0][0].execute(
+            """
+            SELECT
+            student_id, 
+            first_name,
+            last_name,
+            training_course,
+            group_number
+            from students
+            order by first_name,
+            last_name
+            """
+        ).fetchall()
+
+        print(pd.DataFrame(
+            rows,
+            columns = [
+                "id",
+                "Имя",
+                "Фамилия",
+                "№ курса",
+                "№ группы",
+            ]
+            )
+        )
+    elif args[0][1] == "grades":
+        rows = args[0][0].execute(
+            """
+            SELECT
+            grade_id,
+            student_id, 
+            subject,
+            grade,
+            grade_date
+            from grades
+            order by subject,
+            grade_date
+            """
+        ).fetchall()
+
+        print(pd.DataFrame(
+            rows,
+            columns = [
+                "id",
+                "student id",
+                "Предмет",
+                "Оценка",
+                "Дата",
+            ]
+            )
+        )
 
 
 def add_item_to_table(*args):
