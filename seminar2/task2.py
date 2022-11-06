@@ -5,14 +5,12 @@
 
 
 def main():
-    output_list = []
     print("Введите натуральное число n")
     target_number = input()
 
     if target_number.isdigit():
         int_target_number = int(target_number)
-        for n in range(1, int_target_number+1):
-            output_list.append(3 * n + 1)
+        output_list = [3 * n + 1 for n in range(1, int_target_number+1)]
         print(output_list)
     else:
         print("Введено неверное число")

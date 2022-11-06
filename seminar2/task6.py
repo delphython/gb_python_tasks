@@ -5,16 +5,12 @@
 
 
 def main():
-    output_list = []
     print("Введите натуральное число n")
     target_number = input()
 
     if target_number.isdigit():
         int_target_number = int(target_number)
-        for n in range(1, int_target_number+1):
-            output_list.append(
-                (1 + 1 / n) ** n
-            )
+        output_list = [(1 + 1 / n) ** n for n in range(1, int_target_number+1)]
         print(
             f"""Сумма элементов последовательности =
             {sum(output_list)}"""

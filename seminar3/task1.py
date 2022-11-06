@@ -20,16 +20,12 @@ def get_random_int(first_number, second_number):
     random_for_gen = int(
         datetime.datetime.now().microsecond
     )
-    
+
     generated = 0
-    while(True): 
-        if (generated >= first_number and 
-        generated <= second_number):
-            break
-                
+    while generated < first_number or generated > second_number:
         random_for_gen /= 9
         generated = random_for_gen
-    
+
     return int(round(generated))
 
 
