@@ -148,8 +148,57 @@ def get_items_from_table(*args):
         )
 
 
-def add_item_to_table(*args):
-    pass
+def insert_item_to_table(*args):
+    cursor, table_name = args[0]
+    if table_name == "students":
+        students_data = []
+        students_fields = [
+            "Имя",
+            "Фамилия",
+            "№ курса",
+            "№ группы"
+        ]
+        print(f"Введите данные полей таблицы {table_name}:")        
+        for students_field in students_fields:
+            students_data.append(
+                input(f"Данные поля {students_field}:")
+            )
+        print(students_data)
+        cursor.execute(
+        """
+        insert or replace into students (
+            first_name,
+            last_name,
+            training_course,
+            group_number
+        ) values (?, ?, ?, ?)
+        """,
+        (students_data)
+    )
+    elif table_name == "grades":
+        grades_data = []
+        grades_fields = [
+            "student id",
+            "Предмет",
+            "Оценка",
+            "Дата"
+        ]
+        print(f"Введите данные полей таблицы {table_name}:")        
+        for grades_field in grades_fields:
+            grades_data.append(
+                input(f"Данные поля {grades_field}:")
+            )
+        cursor.execute(
+            """
+            insert or replace into grades (
+                student_id,
+                subject,
+                grade,
+                grade_date
+            ) values (?, ?, ?, ?)
+            """,
+            (grades_data)
+        )
 
 
 def update_item_in_table(*args):
@@ -219,11 +268,11 @@ def main():
             [cursor, "grades"]),
         "4": (
             "Добавить запись в таблицу students",
-            add_item_to_table,
+            insert_item_to_table,
             [cursor, "students"]), 
         "5": (
             "Добавить запись в таблицу grades",
-            add_item_to_table,
+            insert_item_to_table,
             [cursor, "grades"]),
         "6": (
             "Изменить запись в таблице students",
