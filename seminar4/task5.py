@@ -8,8 +8,8 @@
 def get_factorization(input_number):
     output_list = []
     d = 2
-    
-    while d * d <= input_number:
+
+    while d**2 <= input_number:
         if input_number % d == 0:
             output_list.append(d)
             input_number //= d
@@ -17,7 +17,7 @@ def get_factorization(input_number):
             d += 1
     if input_number > 1:
         output_list.append(input_number)
-    
+
     return output_list
 
 

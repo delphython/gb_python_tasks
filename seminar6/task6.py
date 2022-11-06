@@ -21,23 +21,16 @@ def get_random_int(first_number, second_number):
     second_number_len = len(str(second_number))
     divider = int(f"1{'0'*second_number_len}")
 
-    random_for_gen = int(
-        str(
-            datetime.datetime.now().microsecond
-        )[0:second_number_len]
-        )
-    
-    while(True): 
-        if (random_for_gen >= first_number and 
-        random_for_gen <= second_number):
-            break
-                
+    random_for_gen = int(str(datetime.datetime.now().microsecond)[:second_number_len])
+
+
+    while random_for_gen < first_number or random_for_gen > second_number:
         random_for_gen = (
             (random_for_gen / divider) *
             (second_number - first_number) +
             first_number
         )
-    
+
     return int(round(random_for_gen))
 
 
@@ -50,7 +43,7 @@ def pseudorandom_number_generator(
     m=2**32
 ):
     numbers = []
-    for i in range(n):
+    for _ in range(n):
         seed = (a * seed + c) % m
         numbers.append(seed)
 
