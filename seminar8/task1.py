@@ -93,8 +93,9 @@ def get_items_from_bd(*args):
 
 
 def get_items_from_table(*args):
-    if args[0][1] == "students":
-        rows = args[0][0].execute(
+    cursor, table_name = args[0]
+    if table_name == "students":
+        rows = cursor.execute(
             """
             SELECT
             student_id, 
@@ -119,8 +120,8 @@ def get_items_from_table(*args):
             ]
             )
         )
-    elif args[0][1] == "grades":
-        rows = args[0][0].execute(
+    elif table_name == "grades":
+        rows = cursor.execute(
             """
             SELECT
             grade_id,
@@ -156,7 +157,25 @@ def update_item_in_table(*args):
 
 
 def delete_item_from_table(*args):
-    pass
+    cursor, table_name = args[0]
+    print(f"Введите id таблицы {table_name} для удаления:")
+    id_to_delete = input()
+    if table_name == "students":
+        cursor.execute(
+            """
+            delete from students where
+            student_id = ?
+            """,
+            id_to_delete
+        )
+    elif table_name == "grades":
+        cursor.execute(
+            """
+            delete from grades where
+            grade_id = ?
+            """,
+            id_to_delete
+        )
 
 
 def exit_from_script(*args):
