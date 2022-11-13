@@ -10,13 +10,16 @@ f(x) = -12x^4*sin(cos(x)) - 18x^3+5x^2 + 10x - 30
 """
 
 
-from sympy import solve, symbols
+from scipy.optimize import fsolve
+import numpy as np
 
 
-def get_equation_roots(expression):
-    x = symbols('x', real=True)
-    return solve(expression, x)
+def f(x):
+    return -12*x**4*np.sin(np.cos(x)) - 18*x**3+5*x**2 + 10*x - 30
 
+
+def get_equation_roots():
+    return fsolve(f, 0)
 
 def get_function_increase_intervals():
     pass
@@ -43,9 +46,9 @@ def get_intervals_less_zero():
 
 
 def main():
-    expression = "-12*(x^4)*sin(cos(x))-18*(x^3)+5*(x^2)+10*x-30"
+    # expression = -12*x**4*sin(cos(x)) - 18*x**3+5*x**2 + 10*x - 30
 
-    print(get_equation_roots(expression))
+    print(get_equation_roots())
     print(get_function_increase_intervals())
     print(get_function_decrease_intervals())
     print(draw_graph())
