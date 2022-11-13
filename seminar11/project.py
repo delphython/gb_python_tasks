@@ -11,15 +11,27 @@ f(x) = -12x^4*sin(cos(x)) - 18x^3+5x^2 + 10x - 30
 
 
 from scipy.optimize import fsolve
+import math
 import numpy as np
-
-
-def f(x):
-    return -12*x**4*np.sin(np.cos(x)) - 18*x**3+5*x**2 + 10*x - 30
+from gekko import GEKKO
 
 
 def get_equation_roots():
-    return fsolve(f, 0)
+    m = GEKKO(remote=False)
+    x = m.Var(1)
+    expression = -12*x**4*m.sin(m.cos(x)) - 18*x**3+5*x**2 + 10*x - 30
+
+    m.Equation(expression == 0)
+    m.solve(disp=False)
+    solves = [float(x.value[0])]
+    for x.value in range(-22, 22):
+        m.solve(disp=False)
+        solves.append(float(x.value[0]))
+
+    x = np.array(solves)
+    
+    return list(np.unique(x.round(decimals=10)))
+
 
 def get_function_increase_intervals():
     pass
@@ -46,8 +58,6 @@ def get_intervals_less_zero():
 
 
 def main():
-    # expression = -12*x**4*sin(cos(x)) - 18*x**3+5*x**2 + 10*x - 30
-
     print(get_equation_roots())
     print(get_function_increase_intervals())
     print(get_function_decrease_intervals())
