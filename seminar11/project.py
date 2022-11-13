@@ -11,7 +11,7 @@ f(x) = -12x^4*sin(cos(x)) - 18x^3+5x^2 + 10x - 30
 
 
 from scipy.optimize import fsolve
-import math
+import matplotlib.pyplot as plt
 import numpy as np
 from gekko import GEKKO
 
@@ -42,7 +42,12 @@ def get_function_decrease_intervals():
 
 
 def draw_graph():
-    pass
+    x = np.arange(-22, 22.01, 0.01)
+    plt.plot(x, -12*x**4*np.sin(np.cos(x)) - 18*x**3+5*x**2 + 10*x - 30)
+    plt.xlabel(r'$x$')
+    plt.ylabel(r'$f(x)$')
+    plt.grid(True)
+    plt.show()
 
 
 def calculate_top():
@@ -58,7 +63,7 @@ def get_intervals_less_zero():
 
 
 def main():
-    print(get_equation_roots())
+    # print(get_equation_roots())
     print(get_function_increase_intervals())
     print(get_function_decrease_intervals())
     print(draw_graph())
