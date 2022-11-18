@@ -12,13 +12,7 @@ f(x) = -12x^4*sin(cos(x)) - 18x^3+5x^2 + 10x - 30
 
 import matplotlib.pyplot as plt
 import numpy as np
-from sympy import Symbol, diff, nsolve, Eq, sin, cos
-
-
-def get_function_derivative(m, expression, value):
-    m.Equation(expression.dt())
-    m.options.IMODE = 4
-    m.solve(disp=False) 
+from sympy import Symbol, diff, nsolve, sin, cos
 
 
 def get_equation_roots(x, expression):
@@ -30,8 +24,6 @@ def get_equation_roots(x, expression):
     current = start
 
     for x0 in np.arange(current, stop + step, step):
-        if x0 < current:
-            continue
         sol = nsolve(expression, x, x0, verify=False)
         if sol is None:
             continue
@@ -78,7 +70,11 @@ def get_function_increase_decrease_intervals(x, expression):
 
 
 def draw_graph():
-    x = np.arange(-22, 22.01, 0.01)
+    start = -22
+    stop = 22
+    step = 0.1
+
+    x = np.arange(start, stop + step, step)
     plt.plot(x, -12*x**4*np.sin(np.cos(x)) - 18*x**3+5*x**2 + 10*x - 30)
     plt.xlabel(r'$x$')
     plt.ylabel(r'$f(x)$')
@@ -86,27 +82,38 @@ def draw_graph():
     plt.show()
 
 
-def calculate_top():
-    pass
-
-
-def get_intervals_greater_zero():
-    pass
-
-
-def get_intervals_less_zero():
-    pass
-
-
 def main():
     x = Symbol('x')
     expression = -12*x**4*sin(cos(x)) - 18*x**3+5*x**2 + 10*x - 30
     fd = diff(expression)
     
-    print(get_equation_roots(x, expression))
-    print(get_function_increase_decrease_intervals(x, expression))
-    print(get_function_increase_decrease_intervals(x, fd))
-    # print(calculate_top())
+    print("Определить корни:")
+    print(",".join("%10.3f" % x for x in get_equation_roots(x, expression)))
+
+    increase_intervals, decrease_intervals = get_function_increase_decrease_intervals(x, expression)
+    
+    print("Найти интервалы, на которых функция возрастает:")
+    for increase_from, increase_to in increase_intervals:
+        print(f"с {'%10.3f' % increase_from} по {'%10.3f' % increase_to}")
+    
+    print("Найти интервалы, на которых функция убывает:")
+    for decrease_from, decrease_to in decrease_intervals:
+        print(f"с {'%10.3f' % decrease_from} по {'%10.3f' % decrease_to}")
+
+    more_zero_intervals, less_zero_intervals = get_function_increase_decrease_intervals(x, fd)
+
+    print("Определить промежутки, на котором f > 0:")
+    for more_zero_from, more_zero_to in more_zero_intervals:
+        print(f"с {'%10.3f' % more_zero_from} по {'%10.3f' % more_zero_to}")
+    
+    print("Определить промежутки, на котором f < 0:")
+    for less_zero_from, less_zero_to in less_zero_intervals:
+        print(f"с {'%10.3f' % less_zero_from} по {'%10.3f' % less_zero_to}")
+    
+    print("Вычислить вершину:")
+    print(",".join("%10.3f" % x for x in get_equation_roots(x, fd)))
+    
+    print("Построить график:")
     draw_graph()
 
 
